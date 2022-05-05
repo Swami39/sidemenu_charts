@@ -124,11 +124,7 @@ class _CandlestickWidgetState extends State<CandlestickWidget> {
           builder: (context, snapshot) {
             updateCandlesFromSnapshot(snapshot);
             return Candlesticks(
-              onIntervalChange: (String value) async {
-                binanceFetch(symbol, value);
-              },
               candles: candles,
-              interval: interval,
             );
           },
         ),

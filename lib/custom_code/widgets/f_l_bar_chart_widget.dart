@@ -34,9 +34,7 @@ class _FLBarChartWidgetState extends State<FLBarChartWidget> {
       print(result.name);
       _result.add(BarChartGroupData(x: double.parse(result.xaxis), barRods: [
         BarChartRodData(
-            toY: double.parse(result.yaxis),
-            width: 15,
-            color: Color(0xff2bdb90)),
+            toY: result.yaxis.toDouble(), width: 15, color: Color(0xff2bdb90)),
       ]));
     }
   }
