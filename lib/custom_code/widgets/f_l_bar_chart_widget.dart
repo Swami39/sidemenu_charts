@@ -32,7 +32,7 @@ class _FLBarChartWidgetState extends State<FLBarChartWidget> {
     super.initState();
     for (var result in widget.bars) {
       print(result.name);
-      _result.add(BarChartGroupData(x: double.parse(result.xaxis), barRods: [
+      _result.add(BarChartGroupData(x: result.xaxis, barRods: [
         BarChartRodData(
             toY: result.yaxis.toDouble(), width: 15, color: Color(0xff2bdb90)),
       ]));
