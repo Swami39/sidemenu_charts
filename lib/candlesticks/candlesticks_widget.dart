@@ -64,7 +64,8 @@ class _CandlesticksWidgetState extends State<CandlesticksWidget> {
                     child: custom_widgets.CandlestickWidget(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 1,
-                      symint: candlestickWidgetCandlesticksRecordList.toList(),
+                      symbol: 'BTCUSDT',
+                      interval: '1h',
                     ),
                   );
                 },

@@ -12,10 +12,18 @@ abstract class RadarchartRecord
       _$radarchartRecordSerializer;
 
   @nullable
+  BuiltList<int> get data1;
+
+  @nullable
+  BuiltList<int> get data2;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
-  static void _initializeBuilder(RadarchartRecordBuilder builder) => builder;
+  static void _initializeBuilder(RadarchartRecordBuilder builder) => builder
+    ..data1 = ListBuilder()
+    ..data2 = ListBuilder();
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('radarchart');
@@ -39,4 +47,7 @@ abstract class RadarchartRecord
 }
 
 Map<String, dynamic> createRadarchartRecordData() => serializers.toFirestore(
-    RadarchartRecord.serializer, RadarchartRecord((r) => r));
+    RadarchartRecord.serializer,
+    RadarchartRecord((r) => r
+      ..data1 = null
+      ..data2 = null));
