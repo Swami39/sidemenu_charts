@@ -12,10 +12,18 @@ abstract class ScatterchartRecord
       _$scatterchartRecordSerializer;
 
   @nullable
+  int get xaxis;
+
+  @nullable
+  int get yaxis;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
-  static void _initializeBuilder(ScatterchartRecordBuilder builder) => builder;
+  static void _initializeBuilder(ScatterchartRecordBuilder builder) => builder
+    ..xaxis = 0
+    ..yaxis = 0;
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('scatterchart');
@@ -39,5 +47,12 @@ abstract class ScatterchartRecord
           {...mapFromFirestore(data), kDocumentReferenceField: reference});
 }
 
-Map<String, dynamic> createScatterchartRecordData() => serializers.toFirestore(
-    ScatterchartRecord.serializer, ScatterchartRecord((s) => s));
+Map<String, dynamic> createScatterchartRecordData({
+  int xaxis,
+  int yaxis,
+}) =>
+    serializers.toFirestore(
+        ScatterchartRecord.serializer,
+        ScatterchartRecord((s) => s
+          ..xaxis = xaxis
+          ..yaxis = yaxis));

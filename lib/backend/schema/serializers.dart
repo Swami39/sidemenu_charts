@@ -6,6 +6,7 @@ import 'sidemenu_style_record.dart';
 import 'barchart_record.dart';
 import 'scatterchart_record.dart';
 import 'candlesticks_record.dart';
+import 'radarchart_record.dart';
 
 import 'index.dart';
 
@@ -22,6 +23,7 @@ const kDocumentReferenceField = 'Document__Reference__Field';
   BarchartRecord,
   ScatterchartRecord,
   CandlesticksRecord,
+  RadarchartRecord,
 ])
 final Serializers serializers = (_$serializers.toBuilder()
       ..add(DocumentReferenceSerializer())

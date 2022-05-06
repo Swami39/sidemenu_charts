@@ -42,7 +42,10 @@ class _BarchartWidgetState extends State<BarchartWidget> {
             mainAxisSize: MainAxisSize.max,
             children: [
               StreamBuilder<List<BarchartRecord>>(
-                stream: queryBarchartRecord(),
+                stream: queryBarchartRecord(
+                  queryBuilder: (barchartRecord) =>
+                      barchartRecord.orderBy('xaxis'),
+                ),
                 builder: (context, snapshot) {
                   // Customize what your widget looks like when it's loading.
                   if (!snapshot.hasData) {

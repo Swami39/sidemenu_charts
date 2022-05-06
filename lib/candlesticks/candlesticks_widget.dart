@@ -17,62 +17,62 @@ class _CandlesticksWidgetState extends State<CandlesticksWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List<CandlesticksRecord>>(
-      stream: queryCandlesticksRecord(),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+    return Scaffold(
+      key: scaffoldKey,
+      appBar: AppBar(
+        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+        automaticallyImplyLeading: false,
+        title: Text(
+          'Page Title',
+          style: FlutterFlowTheme.of(context).title2.override(
+                fontFamily: 'Poppins',
+                color: Colors.white,
+                fontSize: 22,
               ),
-            ),
-          );
-        }
-        List<CandlesticksRecord> candlesticksCandlesticksRecordList =
-            snapshot.data;
-        return Scaffold(
-          key: scaffoldKey,
-          appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-            automaticallyImplyLeading: false,
-            title: Text(
-              'Page Title',
-              style: FlutterFlowTheme.of(context).title2.override(
-                    fontFamily: 'Poppins',
-                    color: Colors.white,
-                    fontSize: 22,
-                  ),
-            ),
-            actions: [],
-            centerTitle: false,
-            elevation: 2,
-          ),
-          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          body: SafeArea(
-            child: GestureDetector(
-              onTap: () => FocusScope.of(context).unfocus(),
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
+        ),
+        actions: [],
+        centerTitle: false,
+        elevation: 2,
+      ),
+      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      body: SafeArea(
+        child: GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              StreamBuilder<List<CandlesticksRecord>>(
+                stream: queryCandlesticksRecord(),
+                builder: (context, snapshot) {
+                  // Customize what your widget looks like when it's loading.
+                  if (!snapshot.hasData) {
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                        ),
+                      ),
+                    );
+                  }
+                  List<CandlesticksRecord>
+                      candlestickWidgetCandlesticksRecordList = snapshot.data;
+                  return Container(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * 1,
                     child: custom_widgets.CandlestickWidget(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 1,
-                      symint: candlesticksCandlesticksRecordList.toList(),
+                      symint: candlestickWidgetCandlesticksRecordList.toList(),
                     ),
-                  ),
-                ],
+                  );
+                },
               ),
-            ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

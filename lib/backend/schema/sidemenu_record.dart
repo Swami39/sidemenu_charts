@@ -18,12 +18,16 @@ abstract class SidemenuRecord
   int get priority;
 
   @nullable
+  String get icon;
+
+  @nullable
   @BuiltValueField(wireName: kDocumentReferenceField)
   DocumentReference get reference;
 
   static void _initializeBuilder(SidemenuRecordBuilder builder) => builder
     ..title = ''
-    ..priority = 0;
+    ..priority = 0
+    ..icon = '';
 
   static CollectionReference get collection =>
       FirebaseFirestore.instance.collection('sidemenu');
@@ -49,9 +53,11 @@ abstract class SidemenuRecord
 Map<String, dynamic> createSidemenuRecordData({
   String title,
   int priority,
+  String icon,
 }) =>
     serializers.toFirestore(
         SidemenuRecord.serializer,
         SidemenuRecord((s) => s
           ..title = title
-          ..priority = priority));
+          ..priority = priority
+          ..icon = icon));

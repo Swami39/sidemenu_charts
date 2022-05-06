@@ -10,6 +10,7 @@ import 'schema/sidemenu_style_record.dart';
 import 'schema/barchart_record.dart';
 import 'schema/scatterchart_record.dart';
 import 'schema/candlesticks_record.dart';
+import 'schema/radarchart_record.dart';
 import 'schema/serializers.dart';
 
 export 'dart:async' show StreamSubscription;
@@ -23,6 +24,7 @@ export 'schema/sidemenu_style_record.dart';
 export 'schema/barchart_record.dart';
 export 'schema/scatterchart_record.dart';
 export 'schema/candlesticks_record.dart';
+export 'schema/radarchart_record.dart';
 
 /// Functions to query SidemenuRecords (as a Stream and as a Future).
 Stream<List<SidemenuRecord>> querySidemenuRecord(
@@ -204,6 +206,37 @@ Future<FFFirestorePage<CandlesticksRecord>> queryCandlesticksRecordPage({
     queryCollectionPage(
       CandlesticksRecord.collection,
       CandlesticksRecord.serializer,
+      queryBuilder: queryBuilder,
+      nextPageMarker: nextPageMarker,
+      pageSize: pageSize,
+      isStream: isStream,
+    );
+
+/// Functions to query RadarchartRecords (as a Stream and as a Future).
+Stream<List<RadarchartRecord>> queryRadarchartRecord(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollection(RadarchartRecord.collection, RadarchartRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<List<RadarchartRecord>> queryRadarchartRecordOnce(
+        {Query Function(Query) queryBuilder,
+        int limit = -1,
+        bool singleRecord = false}) =>
+    queryCollectionOnce(
+        RadarchartRecord.collection, RadarchartRecord.serializer,
+        queryBuilder: queryBuilder, limit: limit, singleRecord: singleRecord);
+
+Future<FFFirestorePage<RadarchartRecord>> queryRadarchartRecordPage({
+  Query Function(Query) queryBuilder,
+  DocumentSnapshot nextPageMarker,
+  int pageSize,
+  bool isStream,
+}) =>
+    queryCollectionPage(
+      RadarchartRecord.collection,
+      RadarchartRecord.serializer,
       queryBuilder: queryBuilder,
       nextPageMarker: nextPageMarker,
       pageSize: pageSize,

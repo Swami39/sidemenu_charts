@@ -7,3 +7,4 @@ export 'login/login_widget.dart' show LoginWidget;
 export 'barchart/barchart_widget.dart' show BarchartWidget;
 export 'candlesticks/candlesticks_widget.dart' show CandlesticksWidget;
 export 'sactterchart/sactterchart_widget.dart' show SactterchartWidget;
+export 'radarchart/radarchart_widget.dart' show RadarchartWidget;
